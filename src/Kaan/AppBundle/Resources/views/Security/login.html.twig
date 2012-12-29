@@ -1,0 +1,17 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+<div class="form-signin">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('_security_check') }}" method="POST">
+            <label for="username">Username:</label>
+            <input class="input-block-level" type="text" id="username" name="_username" value="{{ last_username }}" required="true"/>
+
+            <label for="password">Password:</label>
+            <input class="input-block-level" type="password" id="password" name="_password" required="true"/>
+            <button type="submit" class="btn btn-large btn-primary"> Login</button>
+    </form>
+</div>
+{% endblock %}

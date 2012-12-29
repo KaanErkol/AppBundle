@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Barkod Sorgulama{% endblock %}</title>
+    {% block stylesheet %}
+    {% include 'BraincraftedBootstrapBundle::_stylesheets.html.twig' %}
+		<link rel="stylesheet" href="{{asset('/bundles/app/css/jquery-ui.css')}}">
+		<link rel="stylesheet" href="{{asset('/bundles/app/css/main.css')}}">
+    {% endblock stylesheet %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">Barkod Sorgulama</a>
+            {{ knp_menu_render('AppBundle:Builder:basicNavbar',{'nav_type': 'navbar'}) }}
+            {{ knp_menu_render('AppBundle:Builder:rightMenu',{'nav_type': 'navbar','pull':'right'}) }}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        {% block content %}{% endblock %}
+    </div>
+</div>
+
+{% include 'BraincraftedBootstrapBundle::_javascripts.html.twig' %}
+{% block javascript %}
+    {% javascripts
+    'bundles/app/js/*'
+    %}
+    <script src="{{ asset_url }}" type="text/javascript"></script>
+    {% endjavascripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+{% endblock javascript %}
+</body>
+</html>
