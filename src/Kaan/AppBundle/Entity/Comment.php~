@@ -1,0 +1,276 @@
+<?php
+namespace Kaan\DevBundle\Entity;
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Kaan Erkol
+ * Date: 06.12.2012
+ * Time: 17:49
+ * To change this template use File | Settings | File Templates.
+ */
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="comment")
+ */
+
+class Comment
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var integer $id
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $content;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Entry", inversedBy="Comment")
+     * @ORM\JoinColumn(name="entry_id", referencedColumnName="id")
+     */
+    protected $entry;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Comment")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Rating", mappedBy="Comment")
+     * @ORM\JoinColumn(name="rating_id", referencedColumnName="id")
+     */
+    protected $rating;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @var datetime $created_at
+     */
+    protected $created_at;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @var datetime $updated_at
+     */
+    protected $updated_at;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->rating = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param Kaan\DevBundle\Entity\User $user
+     * @return Comment
+     */
+    public function setUser(\Kaan\DevBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return Kaan\DevBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add rating
+     *
+     * @param Kaan\DevBundle\Entity\Rating $rating
+     * @return Comment
+     */
+    public function addRating(\Kaan\DevBundle\Entity\Rating $rating)
+    {
+        $this->rating[] = $rating;
+    
+        return $this;
+    }
+
+    /**
+     * Remove rating
+     *
+     * @param Kaan\DevBundle\Entity\Rating $rating
+     */
+    public function removeRating(\Kaan\DevBundle\Entity\Rating $rating)
+    {
+        $this->rating->removeElement($rating);
+    }
+
+    /**
+     * Get rating
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Comment
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set entry
+     *
+     * @param Kaan\DevBundle\Entity\Entry $entry
+     * @return Comment
+     */
+    public function setEntry(\Kaan\DevBundle\Entity\Entry $entry = null)
+    {
+        $this->entry = $entry;
+    
+        return $this;
+    }
+
+    /**
+     * Get entry
+     *
+     * @return Kaan\DevBundle\Entity\Entry 
+     */
+    public function getEntry()
+    {
+        return $this->entry;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Comment
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * Set delele
+     *
+     * @param boolean $delele
+     * @return Comment
+     */
+    public function setDelele($delele)
+    {
+        $this->delele = $delele;
+    
+        return $this;
+    }
+
+    /**
+     * Get delele
+     *
+     * @return boolean 
+     */
+    public function getDelele()
+    {
+        return $this->delele;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return Comment
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set delete
+     *
+     * @param boolean $delete
+     * @return Comment
+     */
+    public function setDelete($delete)
+    {
+        $this->delete = $delete;
+    
+        return $this;
+    }
+
+    /**
+     * Get delete
+     *
+     * @return boolean 
+     */
+    public function getDelete()
+    {
+        return $this->delete;
+    }
+}

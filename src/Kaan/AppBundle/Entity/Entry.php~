@@ -1,0 +1,172 @@
+<?php
+namespace Kaan\DevBundle\Entity;
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Kaan Erkol
+ * Date: 06.12.2012
+ * Time: 17:49
+ * To change this template use File | Settings | File Templates.
+ */
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Kaan\DevBundle\Utils\Slug;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="entry")
+ */
+class Entry
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @var integer $id
+     */
+    protected $id;
+    /**
+     * @ORM\Column(type="string",length=255,unique=TRUE)
+     * @var string $title
+     */
+    protected $title;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @var datetime $created_at
+     */
+    protected $createdat;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="entry")
+     *
+     * @var ArrayCollection $entry
+     */
+
+    protected $comment;
+    /**
+     * @ORM\Column(length=255, unique=true)
+     */
+    protected $slug;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comment = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Entry
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set createdat
+     *
+     * @param \DateTime $createdat
+     * @return Entry
+     */
+    public function setCreatedat($createdat)
+    {
+        $this->createdat = $createdat;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdat
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedat()
+    {
+        return $this->createdat;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Entry
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param Kaan\DevBundle\Entity\Comment $comment
+     * @return Entry
+     */
+    public function addComment(\Kaan\DevBundle\Entity\Comment $comment)
+    {
+        $this->comment[] = $comment;
+    
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param Kaan\DevBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Kaan\DevBundle\Entity\Comment $comment)
+    {
+        $this->comment->removeElement($comment);
+    }
+
+    /**
+     * Get comment
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+}
