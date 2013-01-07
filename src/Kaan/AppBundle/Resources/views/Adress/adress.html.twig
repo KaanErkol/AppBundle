@@ -1,0 +1,24 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Adress İsmi</th>
+                <th>İsim</th>
+                <th>Oluşturma Tarihi</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        {% for adress in user.adress %}
+            <tr>
+                <td>{{ adress.name }}</td>
+                <td>{{ adress.shippingname }}</td>
+                <td>{{ adress.createdat | date }}</td>
+                <td class="text-align">
+                    <a href="#" title="Düzenle"><i class="cus-page-white-edit"></i></a>
+                    <a href="#" title="Kaldır"><i class="cus-delete"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

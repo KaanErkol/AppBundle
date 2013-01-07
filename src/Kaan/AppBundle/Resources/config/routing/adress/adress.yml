@@ -1,0 +1,3 @@
+user_adress:
+    pattern: /adress
+    defaults: { _controller: AppBundle:User:adress }
