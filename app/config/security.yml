@@ -4,7 +4,7 @@ jms_security_extra:
 
 security:
     encoders:
-        Kaan\DevBundle\Entity\User:
+        Kaan\AppBundle\Entity\User:
             algorithm: sha512
             encode-as-base64: true
             iterations: 10
@@ -24,5 +24,6 @@ security:
             anonymous: true
 
     access_control:
+        - { path: /user/, role: ROLE_ADMIN }
         - { path: /admin/.*, role: ROLE_ADMIN }
         - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

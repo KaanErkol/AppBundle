@@ -1,0 +1,37 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>#id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Permalink</th>
+                <th>Available On</th>
+                <th>Deleted At</th>
+                <th>Meta Description</th>
+                <th>Meta Keywords</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+    {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td><a href="{{ path('product_show',{'id':product.id}) }}">{{ product.name }}</a></td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.permalink }}</td>
+            <td>{{ product.availableon | date }}</td>
+            <td>{{ product.deletedat | date }}</td>
+            <td>{{ product.metadesc }}</td>
+            <td>{{ product.metakeyword }}</td>
+            <td>
+                <center>
+                    <a href="{{ path('product_show',{'id':product.id}) }}"><i class="icon-ok"></i></a>
+                    <a href="#"><i class="icon-remove"></i></a>
+                </center>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

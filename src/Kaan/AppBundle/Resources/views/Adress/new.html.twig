@@ -1,0 +1,10 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+    <form action="{{ path('adress_create') }}" method="post" class="form-horizontal span6 centered">
+        {{ form_widget(form,{'form_type': 'horizontal'}) }}
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Ekle</button>
+            <a href="{{ path('adress_homepage') }}" class="btn">İptal</a>
+        </div>
+    </form>
+{% endblock %}

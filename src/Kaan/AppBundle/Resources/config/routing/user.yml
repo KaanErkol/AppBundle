@@ -1,0 +1,6 @@
+user_homepage:
+    pattern: /
+    defaults: { _controller: AppBundle:User:index }
+adress:
+    prefix: /adress
+    resource: "@AppBundle/Resources/config/routing/adress/adress.yml"

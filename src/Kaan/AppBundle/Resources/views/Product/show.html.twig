@@ -1,0 +1,43 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+    <table class="table table-striped table-bordered table-hover span3 centered">
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>id</td>
+            <td>{{ product.id }}</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>{{ product.name }}</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>{{ product.description }}</td>
+        </tr>
+        <tr>
+            <td>permalink</td>
+            <td>{{ product.permalink }}</td>
+        </tr>
+        <tr>
+            <td>availableon</td>
+            <td>{{ product.availableon | date }}</td>
+        </tr>
+        <tr>
+            <td>deletedat</td>
+            <td>{{ product.deletedat | date }}</td>
+        </tr>
+        <tr>
+            <td>metadesc</td>
+            <td>{{ product.metadesc }}</td>
+        </tr>
+        <tr>
+            <td>metakeyword</td>
+            <td>{{ product.metakeyword }}</td>
+        </tr>
+    </table>
+{% endblock content %}

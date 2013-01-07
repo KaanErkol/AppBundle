@@ -12,7 +12,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('root');
 
         $item = $menu->addChild('Home', array('route' => 'app_homepage','attributes' => array('icon' => 'icon-home')));
-        $item = $menu->addChild('Link 1', array('uri' => '#'));
+        $item = $menu->addChild('Shop', array('route' => 'product_homepage','attributes' => array('icon' => 'icon-shopping-cart')));
         $item = $menu->addChild('Link 2', array('uri' => '#'));
 
         return $menu;
@@ -25,7 +25,10 @@ class Builder extends ContainerAware
         {
             $user = $this->container->get('security.context')->getToken()->getUser();
             $dropdown = $menu->addChild($user->getUsername());
-            $dropdown->addChild('Profile',array('uri' => '#'));
+            $dropdown->addChild('Profile',array(
+                'route' => 'user_homepage',
+                'attributes' => array('icon' => 'icon-user')
+            ));
             $dropdown->addChild(null,array('attributes'=>array('divider'=>TRUE)));
             $dropdown->addChild('Logout',array(
                 'route' => '_security_logout',

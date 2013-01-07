@@ -1,5 +1,12 @@
 {% extends 'AppBundle::layout.html.twig' %}
 {% block content %}
+    <div class="pull-right">
+        <a href="{{ path('adress_new') }}" class="btn"><i class="cus-add"></i> Yeni Adres Ekle</a>
+    </div>
+    <div class="clearfix"></div>
+    <p>
+        <h2>Kayıtlı Adresleriniz</h2>
+    </p>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -16,9 +23,11 @@
                 <td>{{ adress.createdat | date }}</td>
                 <td class="text-align">
                     <a href="#" title="Düzenle"><i class="cus-page-white-edit"></i></a>
-                    <a href="#" title="Kaldır"><i class="cus-delete"></i></a>
+                    <a href="{{ path('adress_remove',{'id':adress.id}) }}" title="Kaldır"><i class="cus-delete"></i></a>
                 </td>
             </tr>
+        {% else %}
+            <h3>Kayıtlı Adres Bulunamadı.</h3>
         {% endfor %}
     </table>
 {% endblock content %}

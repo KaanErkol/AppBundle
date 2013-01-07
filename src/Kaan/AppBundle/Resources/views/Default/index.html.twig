@@ -1,1 +1,12 @@
-Hello World!
+{% extends 'AppBundle::layout.html.twig' %}
+{% block content %}
+Title: {{ data.name }}    <br>
+    <table class="table table-striped">
+    {% for attr in data.attribute %}
+        <tr>
+            <td><b>{{ attr.attribute.name }}</b>
+            <td>{{ attr.value }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

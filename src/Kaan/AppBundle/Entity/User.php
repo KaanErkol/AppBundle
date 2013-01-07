@@ -102,7 +102,10 @@ class User implements UserInterface {
      */
     protected $userGroup;
 
-
+    /**
+     * @ORM\OneToMany(targetEntity="Adress", mappedBy="user",cascade={"remove"})
+     */
+    protected $adress;
 
     /**
      * Gets the username.
@@ -377,5 +380,38 @@ class User implements UserInterface {
      */
     public function getUserGroup() {
         return $this->userGroup;
+    }
+
+    /**
+     * Add adress
+     *
+     * @param \Kaan\AppBundle\Entity\Adress $adress
+     * @return User
+     */
+    public function addAdres(\Kaan\AppBundle\Entity\Adress $adress)
+    {
+        $this->adress[] = $adress;
+    
+        return $this;
+    }
+
+    /**
+     * Remove adress
+     *
+     * @param \Kaan\AppBundle\Entity\Adress $adress
+     */
+    public function removeAdres(\Kaan\AppBundle\Entity\Adress $adress)
+    {
+        $this->adress->removeElement($adress);
+    }
+
+    /**
+     * Get adress
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdress()
+    {
+        return $this->adress;
     }
 }

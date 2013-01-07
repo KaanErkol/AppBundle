@@ -1,3 +1,12 @@
-user_adress:
-    pattern: /adress
-    defaults: { _controller: AppBundle:User:adress }
+adress_homepage:
+    pattern: /
+    defaults: { _controller: AppBundle:Adress:index }
+adress_new:
+    pattern: /new
+    defaults: { _controller: AppBundle:Adress:new }
+adress_remove:
+    pattern: /remove/{id}
+    defaults: { _controller: AppBundle:Adress:remove }
+adress_create:
+    pattern: /create
+    defaults: { _controller: AppBundle:Adress:create }

@@ -7,6 +7,10 @@ body
     margin: 0 auto;
     float: none;
 }
+.text-align
+{
+    text-align: center;
+}
 .left-fixed
 {
     position: fixed;

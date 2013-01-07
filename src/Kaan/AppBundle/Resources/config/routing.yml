@@ -2,18 +2,12 @@ app_homepage:
     pattern:  /
     defaults: { _controller: AppBundle:Default:index }
 
-_security_login:
-    pattern:  /login
-    defaults: { _controller: AppBundle:Security:login }
+product:
+    resource: "@AppBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix: /user
 
-_security_profile:
-    pattern:  /profile/me
-    defaults: { _controller: AppBundle:Security:login }
-_security_check:
-    pattern:  /login_check
-
-_security_logout:
-    pattern:  /logout
-_security_register:
-    pattern:  /register
-    defaults: { _controller: AppBundle:Security:register }
+security:
+    resource: "@AppBundle/Resources/config/routing/security.yml"
